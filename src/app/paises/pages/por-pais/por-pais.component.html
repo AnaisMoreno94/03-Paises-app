@@ -1,0 +1,40 @@
+<div class="animate__animated animate__fadeIn animate__faster">
+
+    <h2>Por Pais</h2>
+    <hr>
+
+    <div class="row">
+        <div class="col">
+            <app-pais-input (onEnter)="buscarPais($event)" (onDebounce)="sugerencias($event)" placeholder="Buscar pais..."></app-pais-input>
+            <!--se llama onEnter(que trae el string con el termino como el evento) y se llama la fucion para realizar la busqueda pasandole como parametro el evento (recordar que el "evento" lo que tiene es la informacion del termino como un string)-->
+        </div>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-action" *ngFor="let pais of paisesSugeridos">
+            <a [routerLink]="['/pais', pais.cca2]">{{pais.name.common}}</a>
+        </li>
+
+        <li class="list-group-item list-group-item-action" *ngIf="termino">
+            <a class="nav-link" (click)="buscarPais(termino)"> Buscar {{termino}}</a>
+        </li>
+
+
+
+
+    </ul>
+
+
+    <hr>
+</div>
+
+
+<div *ngIf="hayError" class="alert alert-danger">
+    <p>No se encontro nada con el termino {{termino}}</p>
+</div>
+
+<div class="row" *ngIf="paises.length > 0">
+    <div class="col">
+        <app-pais-table [paises]="paises"></app-pais-table>
+    </div>
+</div>

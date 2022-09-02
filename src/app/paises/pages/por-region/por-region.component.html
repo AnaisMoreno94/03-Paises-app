@@ -1,0 +1,35 @@
+<div class="animate__animated animate__fadeIn animate__faster">
+    <h3>Buscar Por Region <small>{{regionActiva | titlecase}}</small></h3>
+    <hr>
+
+
+    <h5>Seleccione la región</h5>
+
+    <div class="row">
+        <div class="col">
+
+            <!--Se puede realizar la evaluacion condicional de la clase para el boton activo mediante [class.btn-primay]= "region=== regionActiva"-->
+
+            <!-- Se puede realizar la evaluacion con ngclass con clases de css para darle estilo al boton activo mediante [ngClass]="{
+            'btn-primary': regionActiva ===region,
+            'btn-outline-primary': regionActiva!== region
+
+        }"-->
+
+            <!--él elije realizarlo con un metodo que retorne la clase dependiendo de la evaluacion-->
+
+            <button *ngFor="let region of regiones" [class]="getClass(region)" (click)="activarRegion(region)">
+            {{region | titlecase}}
+        </button>
+        </div>
+
+
+    </div>
+</div>
+
+
+<div class="row" *ngIf="paises.length > 0">
+    <div class="col">
+        <app-pais-table [paises]="paises"></app-pais-table>
+    </div>
+</div>

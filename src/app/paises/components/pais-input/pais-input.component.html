@@ -1,0 +1,6 @@
+<form autocomplete="off" (ngSubmit)="buscar()">
+    <!--el ngsubmit llama al metodo buscar, que emite la informacion como un string-->
+
+    <input type="text" name="termino" [placeholder]="placeholder" class="form-control" [(ngModel)]="termino" (input)="teclaPresionada()">
+    <!--Por medio del ng model mando el termino buscado a memoria-->
+</form>
